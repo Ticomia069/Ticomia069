@@ -4,11 +4,12 @@ from dataclasses import dataclass
 from re import split
 from typing import List, Self
 
- @dataclass(frozen = True)
+
 
 #classe que representa um usuario
-
+@dataclass(frozen = True)   
 class user:
+ 
     name: str
     age: int
     email:str
@@ -47,7 +48,7 @@ class UserRepository:
 
 
     def __List_all(self) -> List[user]:
-        print(f"Lista de usuarios: {self._users}"):
+        print(f"Lista de usuarios: {self._users}")
         return list(self._users.values())
         #retorna a lista de usuarios do repositorio
 
@@ -56,21 +57,40 @@ class UserRepository:
 
         name = name.lower().strip()
         return [u for u in Self._Users.values() if name in u.name.lower()]
+    
 
-        #busca um usuario pelo email
+
+    def search_user_by_name(self,name:str) ->list[user]:
+        name = name.lower().strip()
+        return [u for u in self.__users.values() if name in u.name.lower()] 
+
+
+ #busca um usuario pelo email
 
 class UserService: 
     def __init__(self, repository, user_repository: UserRepository):
         self._repository = repository
 
-def __add_user(Self, name: str, age: int, email: str) -> user:
+def __add_user(self, name: str, age: int, email: str) -> user:
     user = user(name, age, email)
-    self._repository.__add_user(user)
+    Self._repository.__add_user(user)
     return user
+
+def list_users(self) -> List[user]:
+        return self._repository.list_all()
+
+def search_user_by_email(self, email: str) -> user | None:
+        return self._repository.search_user_by_email(email)
+
+def search_users_by_name(self, name: str) -> List[user]:
+        return self._repository.search_users_by_name(name)
+
 
 class InterfaceConsole:
     def __init__(self, user_service: UserService):
-        
-    
 
+        print("1- adicionar usuario")
+        print("2- Listar Usuarios")
+        print("3- Excluir Usuarios")
+        print("4- Buscar os UsuarioS")
 
